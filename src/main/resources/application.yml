@@ -1,0 +1,28 @@
+
+server:
+  port: 9999
+
+spring:
+  application:
+    name: bootcamp-shopvintage-apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: bidders-service
+          uri: lb://BOOTCAMP-SHOPVINTAGE-BIDDERS
+          predicates:
+            - Path=/bidders/**
+#        - id: products-service
+#          uri: lb://BOOTCAMP-ADVENTUREWORKS-PRODUCTS
+#          predicates:
+#            - Path=/products/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#      defaultZone: http://70.37.86.87:8761/eureka
+
+  instance:
+    hostname: localhost
